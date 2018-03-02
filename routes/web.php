@@ -72,6 +72,12 @@ function(){
 		'as'=>'xoagiohang',
 		'uses'=>'ShoppingCartController@removeItem'
 		]);
+
+	//shiporder 
+	Route::get('ship-order',[
+		'as'=>'ship-order',
+		'uses'=>'ShoppingCartController@ShipOrder'
+		]);
 		
 	//Route::resource('/cart', 'CartController');
 	Route::get('checkout',[

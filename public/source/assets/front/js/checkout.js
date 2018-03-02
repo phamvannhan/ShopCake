@@ -5,7 +5,7 @@ jQuery(function ($) {
     });*/
     
     $('.datepicker').datepicker({
-        autoclose: true
+        autoclose: false
     });
 
 });

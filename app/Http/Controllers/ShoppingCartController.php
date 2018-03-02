@@ -52,6 +52,13 @@ class ShoppingCartController extends Controller
         
     }
 
+    public function ShipOrder()
+    {
+        $cart_item = Cart::content();
+        $cart_total = \Cart::subtotal();
+        return view('frontend.shipping.index',compact('cart_item','cart_total'));
+    }
+
     public function ChecKout()
     {
         $cart_item = Cart::content();
@@ -68,31 +75,50 @@ class ShoppingCartController extends Controller
         }
 
         //check user login
-        $search = User::where('email',$req->email)->first(); //phai dung first dk
+        $search_user = User::where('email',$req->email)->first(); //phai dung first dk
         
-        if(!$search)
+        if(!$search_user)
         {
             //echo "them vao";
             $user = new User();
             $user->name = $req->name;
             $user->email = $req->email;
-            $user->password = $req->password;
+            $user->password = Hash::make($req->password);
             $user->active = 0;
             $user->save();
 
             $user_detail = new UserDetail();
             $user_detail->user_id = $user->id;
-            $user->date_of_birth = $req->date_of_birth;
+
+            $user->date_of_birth = $req->date_of_birth ?convertDatabaseTime($req->date_of_birth, PHP_DATE, DATABASE_DATE) : date(DATABASE_DATE);
+
             $user_detail->gender = $req->gender;
             $user_detail->address = $req->address;
             $user_detail->phone = $req->phone;
-            $user_detail->note = $req->note;
+            $user_detail->about_me = $req->note;
+            $user_detail->save();
 
         }
         else
         {
-            echo 'cap nhat';
+            //echo 'cap nhat';
+            $user_detail = new UserDetail();
+            $user_detail->user_id = $search_user->id;
+
+            $user_detail->date_of_birth = $req->date_of_birth ?convertDatabaseTime($req->date_of_birth, PHP_DATE, DATABASE_DATE) : date(DATABASE_DATE);
+
+            $user_detail->gender = $req->gender;
+            $user_detail->address = $req->address;
+            $user_detail->phone = $req->phone;
+            $user_detail->about_me = $req->note;
+            $user_detail->save();
+
         }
+
+        $order = new Order();
+        $order->user_id = $search_user ? $search_user->id : $user->id; //t/hop: 
+
+        dd($order->user_id);
 
     }
 
