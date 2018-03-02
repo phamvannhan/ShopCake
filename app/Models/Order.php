@@ -9,11 +9,11 @@ class Order extends Model
     protected $table = "orders";
 
     public function order_detail(){
-    	return $this->hasMany(OrderDetail::class,'order_id','id');
+    	return $this->hasMany(OrderDetail::class);
     }
 
-    public function customers()
+    public function users()
     {
-    	return $this->belongsTo(Customer::class,'customer_id','id');
+    	return $this->belongsTo(User::class);
     }
 }

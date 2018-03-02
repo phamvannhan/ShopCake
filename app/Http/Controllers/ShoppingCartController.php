@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 use Gloudemans\Shoppingcart\Facades\Cart; //phai them thu vien nay 
 use Illuminate\Http\Request;
 use App\Models\Products;
+use App\Models\User;
+use App\Models\UserDetail;
+use App\Models\Order;
+use App\Models\OrderDetail;
+use Hash;
 use validator;
 
 class ShoppingCartController extends Controller
@@ -38,17 +43,6 @@ class ShoppingCartController extends Controller
            Cart::update($id,$qty);
         }
 
-        /*$qty = $request->qty;
-        $id = $request->proId;
-        $rowId = $request->rowId->toArray();
-        dd($rowId);*/
-         
-        //Cart::update($rowId,$qty); // for update
-        /*$cartItems = Cart::content(); 
-        echo "oke";*/
-        // display all new data of cart
-       // return view('page.upcart', compact('cartItems'))->with('status', 'cart updated');
-
     }
 
     public function removeItem($id)
@@ -60,9 +54,46 @@ class ShoppingCartController extends Controller
 
     public function ChecKout()
     {
+        $cart_item = Cart::content();
+        $cart_total = \Cart::subtotal();
+
+        return view('frontend.page.dathang', compact('cart_item','cart_total'));
+    }
+
+    public function postChecKout(Request $req)
+    {
+        $cart_item = \Cart::content();
+        if($cart_item->isEmpty()) {
+            return redirect('/');
+        }
+
+        //check user login
+        $search = User::where('email',$req->email)->first(); //phai dung first dk
         
-        return view('frontend.page.dathang');
-        
+        if(!$search)
+        {
+            //echo "them vao";
+            $user = new User();
+            $user->name = $req->name;
+            $user->email = $req->email;
+            $user->password = $req->password;
+            $user->active = 0;
+            $user->save();
+
+            $user_detail = new UserDetail();
+            $user_detail->user_id = $user->id;
+            $user->date_of_birth = $req->date_of_birth;
+            $user_detail->gender = $req->gender;
+            $user_detail->address = $req->address;
+            $user_detail->phone = $req->phone;
+            $user_detail->note = $req->note;
+
+        }
+        else
+        {
+            echo 'cap nhat';
+        }
+
     }
 
     

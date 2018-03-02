@@ -78,6 +78,10 @@ function(){
 		'as'=>'checkout',
 		'uses'=>'ShoppingCartController@ChecKout'
 		]);
+	Route::post('checkout',[
+		'as'=>'checkout',
+		'uses'=>'ShoppingCartController@postChecKout'
+		]);
 
 
 

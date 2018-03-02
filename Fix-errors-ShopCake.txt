@@ -1,0 +1,7 @@
+ShopCake:
+
+1. Model:class in relationship / not id_foreign,..=> errors user seeder
+2. config shopping cart
+3. image: cart->option->img
+4. search = User::where('email',$req->email)->first(); phai dung first vi dung where dkien de loc
+   - if(!search) ko co them isempty()->chi khi su dung $this->model 

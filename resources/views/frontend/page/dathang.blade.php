@@ -1,4 +1,8 @@
-@extends('frontend.layouts..master')
+@extends('frontend.layouts.master')
+
+@section('style')
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
+@endsection
 
 @section('content')
 <div class="container">
@@ -10,10 +14,10 @@
 					<div class="col-sm-6">
 						<h4>Đặt hàng</h4>
 						<div class="space20">&nbsp;</div>
-
+					
 						<div class="form-block">
 							<label for="name">Họ tên*</label>
-							<input type="text" id="name" name="name"  placeholder="Họ tên" required>
+							<input type="text" id="name" name="name" class="form-control" placeholder="Họ tên" required>
 						</div>
 						<div class="form-block">
 							<label>Giới tính </label>
@@ -24,23 +28,32 @@
 
 						<div class="form-block">
 							<label for="email">Email*</label>
-							<input type="email" id="email" name="email" required placeholder="expample@gmail.com">
+							<input type="email" id="email" name="email" required placeholder="expample@gmail.com" class="form-control">
 						</div>
 
 						<div class="form-block">
-							<label for="adress">Địa chỉ*</label>
-							<input name="address" type="text" id="adress" placeholder="Street Address" required >
+							<label for="password">Password*</label>
+							<input type="password" id="password" name="password" required placeholder="***********" class="form-control">
+						</div>
+
+						<div class="form-block">
+							<label for="date">Password*</label>
+							<input type="text" class="form-control datepicker" id="start_date" name="date_of_birth" data-date-format="{!! JS_DATE !!}" placeholder="dd-mm-yyyy">
+						</div>
+
+						<div class="form-block">
+							<label for="address">Địa chỉ*</label>
+							<input name="address" type="text" id="address" placeholder="Street Address" class="form-control" required >
 						</div>
 						
-
 						<div class="form-block">
 							<label for="phone">Điện thoại*</label>
-							<input name="phone" type="text" id="phone" required>
+							<input name="phone" type="text" id="phone" class="form-control" required>
 						</div>
 						
 						<div class="form-block">
 							<label for="note">Ghi chú</label>
-							<textarea id="notes" name="note"></textarea>
+							<textarea id="notes" class="form-control" name="note"></textarea>
 						</div>
 					</div>
 					<div class="col-sm-6">
@@ -51,13 +64,21 @@
 									<div>
 									<!--  one item	 -->
 										<div class="media">
-											<img width="25%" src="assets/dest/images/shoping1.jpg" alt="" class="pull-left">
+											@foreach($cart_item as $cart)
+											<img width="10%" src="source/image/product/{{$cart->options->img}}" alt="" class="pull-left">
 											<div class="media-body">
-												<p class="font-large">Men's Belt</p>
-												<span class="color-gray your-order-info">Color: Red</span>
-												<span class="color-gray your-order-info">Size: M</span>
-												<span class="color-gray your-order-info">Qty: 1</span>
+												<div class="col-md-6 col-sm-6 ">
+													<p class="color-orange font-large">{{$cart->name}}</p>
+													<span class="color-gray your-order-info">Color: Red</span>
+													<span class="color-gray your-order-info">Size: M</span>
+													<span class="color-gray your-order-info">Qty: {{$cart->qty}}</span>
+													<span class="color-gray your-order-info">{{number_format($cart->price,0)}} VND</span>
+												</div>
+												<div class="col-md-6 col-sm-6">
+													{{($cart->qty)*($cart->price)}} VND
+												</div>
 											</div>
+											@endforeach
 										</div>
 									<!-- end one item -->
 									</div>
@@ -65,7 +86,7 @@
 								</div>
 								<div class="your-order-item">
 									<div class="pull-left"><p class="your-order-f18">Tổng tiền:</p></div>
-									<div class="pull-right"><h5 class="color-black">$235.00</h5></div>
+									<div class="pull-right"><h5 class="color-black">{{Cart::Subtotal()}} VND</h5></div>
 									<div class="clearfix"></div>
 								</div>
 							</div>
@@ -106,4 +127,9 @@
 		</div> <!-- #content -->
 	</div> <!-- .container -->
 
+@endsection
+
+@section("script")
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript" src="source/assets/front/js/checkout.js"></script>
 @endsection

@@ -20,7 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->dateTime("last_logon")->nullable();
             $table->tinyInteger("active")->default(0);
-            $table->string("active_code", 50)->index()->unique();
+            //$table->string("active_code", 50)->index()->unique();
+            $table->string("active_code")->nullable();
             $table->string("social_login")->nullable();
             $table->string("social_id")->nullable();
             $table->rememberToken();

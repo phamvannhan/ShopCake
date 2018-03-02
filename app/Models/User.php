@@ -47,7 +47,8 @@ class User extends Authenticatable implements  Transformable, HasRoleAndPermissi
 
     public function roles()
     {
-        return $this->belongsToMany(Role::class,'role_user', 'role_id','id');
+        //ko them khoa ngoai ko thi bi loi seed
+        return $this->belongsToMany(Role::class);
     }
 
     public function orderdetail(){
@@ -55,6 +56,6 @@ class User extends Authenticatable implements  Transformable, HasRoleAndPermissi
     }
 
     public function userdetail(){
-        return $this->hasOne(UserDetail::class,'user_detail','id');
+        return $this->hasOne(UserDetail::class);
     }
 }

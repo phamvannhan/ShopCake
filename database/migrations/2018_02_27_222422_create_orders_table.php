@@ -17,10 +17,12 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
 
-            $table->decimal('total_amount', 5, 2);
+            //$table->decimal('total_amount', 5, 2);
+            $table->string('total_amount');
             $table->string('payment_method');
             $table->string('note')->nullable();;
-            $table->decimal('fee', 5, 2)->default(0.00);
+            //$table->decimal('fee', 5, 2)->default(0.00);
+            $table->string('fee')->default(0);
             $table->tinyInteger('status')->default(0);
             
             $table->timestamps();

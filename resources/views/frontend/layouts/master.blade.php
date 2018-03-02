@@ -18,6 +18,7 @@
 	
 	<link rel="stylesheet" href="source/assets/dest/css/style_custom.css">
 	
+	@yield("style")
 </head>
 <body>
 
@@ -26,6 +27,17 @@
 		@yield('content')
 		
 	@include('frontend.layouts.footer')
+	
+	<!--jquery phai duoc dat truoc js-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+	<script src="source/assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
+	<script src="source/assets/dest/vendors/bxslider/jquery.bxslider.min.js"></script>
+	<script src="source/assets/dest/vendors/colorbox/jquery.colorbox-min.js"></script>
+	<script src="source/assets/dest/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+	<script src="source/assets/dest/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
+
 
 	<!--Start of Tawk.to Script-->
 	<script type="text/javascript">
@@ -41,31 +53,20 @@
 	</script>
 	<!--End of Tawk.to Script-->
 	<!-- include js files -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
 	
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-	
-	@yield('script')
-
-
-	<script src="source/assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 	<!--su dung slider-->
-	<script src="source/assets/dest/vendors/bxslider/jquery.bxslider.min.js"></script>
+	
 	<script src="source/assets/dest/vendors/dug/dug.js"></script>
 	<!--su dung slider-->
-	<script src="source/assets/dest/vendors/colorbox/jquery.colorbox-min.js"></script>
+	
 	<script src="source/assets/dest/vendors/animo/Animo.js"></script>
 	<script src="source/assets/dest/js/scripts.min.js"></script>
-	<script src="source/assets/dest/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-	<script src="source/assets/dest/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 	<script src="source/assets/dest/js/waypoints.min.js"></script>
 	<script src="source/assets/dest/js/wow.min.js"></script>
-
 	<!--customjs-->
-	
 	<script src="{{asset('source/assets/dest/js/custom2.js')}}"></script>
-	
 	<script>
 	$(document).ready(function($) {    
 		$(window).scroll(function(){
@@ -77,6 +78,6 @@
 		)
 	})
 	</script>
-	
+	@yield('script')
 </body>
 </html>

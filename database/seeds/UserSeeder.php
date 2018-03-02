@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
                 "password" => \Hash::make("12345667"),
                 "last_logon"=>'2018-02-14 00:00:00',
                 'active'=>1,
-                'active_code'=>0,
+                'active_code'=>84,
                 'social_login'=>'',
                 'social_id'=>''
             ];
