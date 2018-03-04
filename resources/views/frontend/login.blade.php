@@ -17,8 +17,8 @@
                         <div class="alert alert-danger">
                             {{session('loi')}}
                         </div>
-                    @endif
-				   	<form action="{{route('postLogin')}}" method="POST">
+                    @endif   
+				   	<form action="{{ trans('routes.login')}}" method="POST">
 						 {{ csrf_field() }}
 						<div class="form-group">
 						 @if($errors->has('email'))
@@ -40,12 +40,12 @@
 						</div>
 						<div class="form-group">
 							<input type="submit" value="Login" class="btn-success btnlogin btn-lg">
-							<a href="{{route('getLogin')}}"></a>
+							<a href="{{ trans('routes.login')}}"></a>
 							<a href="/forget.html"></a>
 						</div>
 						</form>
 						<ul class="forms">
-                            <a href='{{url("register.html")}}' style="float:left;margin-left:175px;padding-top:7px;text-decoration:underline;">Đăng ký</a>
+                            <a href='{{ trans('routes.register')}}' style="float:left;margin-left:175px;padding-top:7px;text-decoration:underline;">{!! __('f_top.register') !!}</a>
                             <a href='{{url("/forget.html")}}' style="float:left;margin-left:40px;padding-top:7px;text-decoration:underline;">Quên mật khẩu?</a>
                          </ul>
 				  </div>

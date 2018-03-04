@@ -28,20 +28,14 @@ class AppServiceProvider extends ServiceProvider
         \Log::useDailyFiles(storage_path('/logs/laravel-').$user.'.log');
 
         //chia sẻ dulieu = gán biến $view trên header
-        /*View::composer(
+        View::composer(
             [
-                'frontend.layouts..header'
+                'frontend.layouts.header'
             ], CategoryComposer::class
-        );*/
-
-        view()->composer('*',"App\Http\ViewComposers\CategoryComposer");
+        );
 
         //chia sẻ dulieu = gán biến $view trên header
-        /*view()->composer('frontend.layouts.header',function($view){
-            $loai_sp = ProductType::all();
-            $view->with('loai_sp',$loai_sp);
-        });*/
-
+        //view()->composer('*',"App\Http\ViewComposers\CategoryComposer");
 
         // Admin chia se login auth
         View::composer([
@@ -58,18 +52,15 @@ class AppServiceProvider extends ServiceProvider
             $view->with('composer_locale', \App::getLocale());
         });
 
-
-        /*dat hàng thêm vào giỏ su dung chua dc
-        view()->composer('page.dathang',function($view){
+        /*view()->composer('page.dathang',function($view){
             if(Session::has('cart')){
-                $oldCart = Session::get('cart'); //Ktra trong giỏ củ có chưa
-                $cart = new Cart($oldCart);//thêm mới vào giỏ cũ
-                //đặt product_cart là tên sp đã chọn vào giỏ hàng, gán thêm với items
+                $oldCart = Session::get('cart'); 
+                $cart = new Cart($oldCart);
                 $view->with(['cart'=>Session::get('cart'),'product_cart'=>$cart->items,'totalPrice'=>$cart->totalPrice,'totalQty'=>$cart->totalQty]);
             }
             
-        }); 
-        */
+        });*/ 
+        
         Schema::defaultStringLength(191); 
         
     }

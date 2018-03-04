@@ -23,6 +23,10 @@ class ComposerServiceProvider extends ServiceProvider
             $arr = \Auth::user()->getPermissions()->pluck('slug')->toArray();
             $view->with('composer_auth_permissions', $arr);
         });
+
+        /*View::composer('*', function ($view){
+            $view->with('composer_locale', \App::getLocale());
+        });*/
     }
 
     /**

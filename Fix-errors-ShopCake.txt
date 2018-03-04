@@ -17,8 +17,12 @@ ShopCake:
    - menu: 
    - lang:/route.php
    - trang chu: front/page/en[vi] => header
+   - trans('route.'), {!! __('f_top.') !!}
+   - route/en/vi: translation => view  currentPageMenu > slug
 
 6. Session: 
    - config translate: en/vi
    - redirect()->back(); moi su dung dc, ko cho qua route moi(/)
 
+7. ViewComposer: 
+   - category

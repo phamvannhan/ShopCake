@@ -28,8 +28,6 @@ class ProductController extends Controller
 
         $categories = $this->category->getCategories(0, true);
         
-
-
     }
 
     /**

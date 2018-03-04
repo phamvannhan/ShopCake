@@ -20,7 +20,8 @@
                             {{session('loi')}}
                         </div>
                     @endif
-				   	<form action="{{route('postRegister')}}" method="POST">
+
+				   	<form action="{{ trans('routes.register')}}" method="POST">
 						 {{ csrf_field() }}
 						 <!--div group-->
 						 <div class="form-group">

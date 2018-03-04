@@ -13,12 +13,12 @@
 				<div class="pull-right auto-width-right">
 					<ul class="top-details menu-beta l-inline">
 					@if(Auth::check())
-						<li><a href="#"><i class="fa fa-user"> <span style="color: red; font-size: 18px;">Chào bạn {{Auth::user()->name}}</span></i></a></li>
-						<li><a href="{{route('getLogout')}}">Đăng Xuất</a></li>
+						<li><a href="#"><i class="fa fa-user"> <span style="color: red; font-size: 18px;">{!! __('f_top.hello') !!} {{Auth::user()->name}}</span></i></a></li>
+						<li><a href="{{route('getLogout')}}">{!! __('f_top.logout') !!}</a></li>
 					@else
 
-						<li><a href="{{route('getRegister')}}"{{route('getLogin')}}>Đăng kí</a></li>
-						<li><a href="{{route('getLogin')}}">Đăng nhập</a></li>
+						<li><a href="{{ trans('routes.register')}}">{!! __('f_top.register') !!}</a></li>
+						<li><a href="{{ trans('routes.login')}}">{!! __('f_top.login') !!}</a></li>
 					@endif
 					</ul>
 				</div>
@@ -90,24 +90,25 @@
 				<div class="visible-xs clearfix"></div>
 				<nav class="main-menu">
 					<ul class="l-inline ov">
-						<li><a href="{{ trans('routes.home') }}">{!! __("f_menu.home") !!}</a></li>
 
-						<li><a >{!! __("f_menu.products") !!}</a>
+						<li><a href="{{ trans('routes.home') }}" class="{{ currentPageMenu(['/', '/en']) }}" title="{!! __('f_menu.home') !!}"><span class="icon_house hidden-sm hidden-md hidden-lg"></span> {!! __('f_menu.home') !!}</a></li>
+
+
+						<li><a @if($composer_categories->first()) class="{{ currentPageMenu(['en/products*', 'san-pham*']) }}" href="{!! route("loaisanpham", $composer_categories->first()->id) !!}" @else href="#" @endif title="{!! __("f_menu.products") !!}"> {!! __("f_menu.products") !!} </a>
 							<ul class="sub-menu">
-							@foreach($composer_categories as $loai)
-								@if($loai->children->count())
-
-	                            <li class="dropdown"><a href="{!! route('loaisanpham',$loai->id)!!}">{{ $loai->name }}</a>
+							@foreach($composer_categories as $categories)
+								@if($categories->children->count())
+	                            <li class="dropdown"><a href="{!! route('loaisanpham',$categories->id)!!}" title="{{ $categories->name }}">{{ $categories->name }}</a>
 	                                <a class="button-dropdown hidden-sm hidden-md hidden-lg" href="javascript:void(0)"><span class="icon-toggle"></span></a>
 	                                <ul class="sub-menu">
-	                                    @foreach($loai->children as $rs)
-	                                        <li><a href="{!! route('loaisanpham',$rs->id)!!}">{{ $rs->name }}</a></li>
+	                                    @foreach($categories->children as $rs)
+	                                        <li><a href="{!! route('loaisanpham',$rs->id)!!}" title="{{ $rs->name }}" >{{ $rs->name }}</a></li>
 	                                    @endforeach
 	                                </ul>
 	                            </li>
                                     
 								@else
-								<li><a href="{{route('loaisanpham',$loai->id)}}">{{$loai->name}}</a></li>
+								<li><a href="{{route('loaisanpham',$categories->id)}}">{{$categories->name}}</a></li>
 								@endif
 							@endforeach
 							</ul>

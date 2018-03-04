@@ -9,11 +9,6 @@ use Illuminate\Http\Request;
 use App\Models\Slide;
 use App\Models\Products;
 use App\Models\ProductType;
-//use App\Cart;
-use Session;
-use App\Models\Customer;//sử dụng để lưu TT khách hàng
-use App\Models\Bill; 
-use App\Models\BillDetail;
 
 class PageController extends Controller
 {
@@ -42,12 +37,12 @@ class PageController extends Controller
 
         $loaisp = ProductType::all();
 
-        //$category = $this->category->getCategoryBySlug($slug, ['children'], 0);
+        //$loaisp = $this->category->getCategoryBySlug($slug, ['children'], 0);
 
         $loaisp_ten = ProductType::where('id',$type)->first();
 
         // translation url
-       // $locales = \LaravelLocalization::getSupportedLanguagesKeys();
+        //$locales = \LaravelLocalization::getSupportedLanguagesKeys();
 
     	return view('frontend.page.loai_sanpham',compact('sp_theoloai','sp_khac','loaisp','loaisp_ten'));
     }

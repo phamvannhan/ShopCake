@@ -1,5 +1,5 @@
 <?php
-//route da ngon ngu
+
 Route::group(
 [
     'prefix' => LaravelLocalization::setLocale(),
@@ -7,12 +7,11 @@ Route::group(
         'localizationRedirect' ]
 ],
 function(){
-	//route dang ki KHACH HANG
-	Route::get('dangki',['as'=>'getRegister','uses'=>'UserController@getRegister']);
-	Route::post('dangki',['as'=>'postRegister','uses'=>'UserController@postRegister']);
+	Route::get(LaravelLocalization::transRoute('routes.register'), 'UserController@getRegister')->name("frontend.register");
 
-	Route::get('dangnhap',['as'=>'getLogin','uses'=>'UserController@getLogin']);
-	Route::post('dangnhap',['as'=>'postLogin','uses'=>'UserController@postLogin']);
+	Route::get(LaravelLocalization::transRoute('routes.login'), 'UserController@getLogin')->name("frontend.login");
+
+	Route::post(LaravelLocalization::transRoute('routes.login'), 'UserController@postLogin')->name("frontend.login");
 
 	Route::get('dangxuat',['as'=>'getLogout','uses'=>'UserController@getLogout']);
 
@@ -81,22 +80,18 @@ function(){
 		'uses'=>'PageController@getChiTiet'
 		]);
 
-
-
-
-
-
+	//Route::get(LaravelLocalization::transRoute('routes.product_category'), 'PageController@getLoaisp')->name("loaisanpham");
 	Route::get('/home', 'HomeController@index')->name('home');
 
 	//custom ten route: trong helper, dung class @show
-	/*Route::get('lien-he',[
+	Route::get('lien-he',[
 				'as'=>'lienhe',
 				'uses'=>'PageController@getLienHe'
 				]);
 			Route::get('gioi-thieu',[
 				'as'=>'gioithieu',
 				'uses'=>'PageController@getGioiThieu'
-				]);*/
+				]);
 			
 	Route::get('{slug}', 'PageController@getIndex')->name('frontend.page.index');
 

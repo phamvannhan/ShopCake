@@ -6,6 +6,8 @@ return [
     
     // custom page
     'home' => '/',
+    'login' => 'dang-nhap',
+    'register' =>'dang-ki',
     'about_us' => 'gioi-thieu',
     'contact_us' => 'lien-he',
     'page_by_slug' => '{slug}',
