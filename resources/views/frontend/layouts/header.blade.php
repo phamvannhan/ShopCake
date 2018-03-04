@@ -4,10 +4,10 @@
 			<div class="container">
 				<div class="pull-left auto-width-left">
 					<ul class="top-menu menu-beta l-inline">
-						<li><a href=""><i class="fa fa-home"></i> 90-92 Lê Thị Riêng, Bến Thành, Quận 1</a></li>
+						<li><a href=""><i class="fa fa-home"></i> {!! __('f_top.address_shop') !!}</a></li>
 						<li><a href=""><i class="fa fa-phone"></i> 0163 296 7751</a></li>
-						 <li><a href="{{URL::asset('')}}language/vi">Tiếng Việt</a></li>
-                        <li><a href="{{URL::asset('')}}language/en">Tiếng Anh</a></li>
+						 <li><a href="{{URL::asset('')}}language/vi">{!! __('f_top.lang_vi') !!}</a></li>
+                        <li><a href="{{URL::asset('')}}language/en">{!! __('f_top.lang_en') !!}</a></li>
 					</ul>
 				</div>
 				<div class="pull-right auto-width-right">
@@ -36,7 +36,7 @@
 						<form role="search" method="GET" id="searchform" action="{{route('search')}}">
 							
 					        <div class="header__tools__search__inner">
-		                        <input type="text" name="tukhoa" id="s" class="form-control" value="{{isset($tukhoa) ? $tukhoa:''}}" placeholder="Search products">
+		                        <input type="text" name="tukhoa" id="s" class="form-control" value="{{isset($tukhoa) ? $tukhoa:''}}" placeholder="{!! __("f_menu.search_products") !!}">
 		                        <button class="btn" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 		                        <input type="submit" style="position: absolute; left: -9999px" style="float: right;" />
 		                    </div>
@@ -47,7 +47,7 @@
 						
 						<div class="cart">
 							<div class="beta-select"><i class="fa fa-shopping-cart">
-								</i> Giỏ hàng ({{Cart::count()}})<i class="fa fa-chevron-down"></i></div>
+								</i> {!! __("f_menu.shopping_carts") !!} ({{Cart::count()}})<i class="fa fa-chevron-down"></i></div>
 							<div class="beta-dropdown cart-body">
 							
 								<div class="cart-item">
@@ -69,11 +69,11 @@
 									<div class="clearfix"></div>
 									<div class="center">
 										<div class="space10">&nbsp;</div>
-										<a href="{{route('giohang')}}" class="beta-btn primary text-center">Xem giỏ <i class="fa fa-chevron-right"></i></a>
+										<a href="{{route('giohang')}}" class="beta-btn primary text-center">{!! __("f_menu.shopping_carts") !!}<i class="fa fa-chevron-right"></i></a>
 									</div>
 									<div class="center">
 										<div class="space10">&nbsp;</div>
-										<a href="checkout" class="beta-btn primary text-center">Đặt hàng <i class="fa fa-chevron-right"></i></a>
+										<a href="{{route('checkout')}}" class="beta-btn primary text-center"> {!! __("f_menu.checkout") !!}<i class="fa fa-chevron-right"></i></a>
 									</div>
 								</div>
 							</div>
@@ -90,9 +90,9 @@
 				<div class="visible-xs clearfix"></div>
 				<nav class="main-menu">
 					<ul class="l-inline ov">
-						<li><a href="{{route('trangchu')}}">{{ trans('home.home') }}</a></li>
+						<li><a href="{{ trans('routes.home') }}">{!! __("f_menu.home") !!}</a></li>
 
-						<li><a >Sản phẩm</a>
+						<li><a >{!! __("f_menu.products") !!}</a>
 							<ul class="sub-menu">
 							@foreach($composer_categories as $loai)
 								@if($loai->children->count())
@@ -112,8 +112,15 @@
 							@endforeach
 							</ul>
 						</li>
-						<li><a href="about.html">Giới thiệu</a></li>
-						<li><a href="contacts.html">Liên hệ</a></li>
+						<li><a href="{!! route('about_us', trans('routes.about_us')) !!}" class="hidden">{!! __("f_menu.about_us") !!}</a></li>
+
+						<li>
+							<a href="{!! route('frontend.page.index', trans('routes.about_us')) !!}" class="{{ currentPageMenu(['en/about-us', 'gioi-thieu']) }}" title="{!! __('f_menu.about_us') !!}"><span class="icon_menu_about hidden-sm hidden-md hidden-lg"></span> {!! __('f_menu.about_us') !!}</a>
+						</li>
+						<li>
+							<a href="{!! route('frontend.page.index', trans('routes.contact_us')) !!}" class="{{ currentPageMenu(['en/contact_us', 'lien-he']) }}" title="{!! __('f_menu.contact_us') !!}"><span class="icon_menu_about hidden-sm hidden-md hidden-lg"></span> {!! __('f_menu.contact_us') !!}</a>
+						</li>
+						
 					</ul>
 					<div class="clearfix"></div>
 				</nav>

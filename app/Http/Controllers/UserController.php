@@ -7,6 +7,7 @@ use Hash;
 use App\Events\SendPasswordMailEvent;
 use App\Events\SendSecretMailEvent;
 use Mail;
+use Session;
 class UserController extends Controller
 {
 

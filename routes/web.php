@@ -1,5 +1,4 @@
 <?php
-
 //route da ngon ngu
 Route::group(
 [
@@ -25,25 +24,53 @@ function(){
 	//chức năng tìm kiếm
 	Route::get('search',['as'=>'search','uses'=>'PageController@getSearch']);
 
-	Route::group(['prefix'=>'admin','middleware'=>'AdminLogin'],function(){
-		//dùng bảo mật middleware, mún vào route dưới thì phải đăng nhập
-			Route::get('lien-he',[
-				'as'=>'lienhe',
-				'uses'=>'PageController@getLienHe'
-				]);
-			Route::get('gioi-thieu',[
-				'as'=>'gioithieu',
-				'uses'=>'PageController@getGioiThieu'
-				]);
-	});
-	//-------------route giao dien nguoi dung
-	/*Route::get('/',[
-		'as'=>'trangchu',
-		'uses'=>'PageController@getIndex'
-		]);*/
-	Route::get(LaravelLocalization::transRoute('routes.home'), 'PageController@getIndex')->name("trangchu");
+	//cart->dung middleware de ko cho vao route
+	Route::get('cart',[
+			'as'=>'giohang',
+			'uses'=>'ShoppingCartController@viewCart'
+			]);
+		Route::get(LaravelLocalization::transRoute('routes.checkout'), 'ShoppingCartController@ChecKout')->name("checkout");
+		Route::get('cart/addCart/{id}',[
+			'as'=>'themgiohang',
+			'uses'=>'ShoppingCartController@addItem'
+			]);
+		
+		//cap nhat theo id vs so luong 
+		Route::get('cap-nhat-gio/{id}',[
+			'as'=>'capnhatgio',
+			'uses'=>'ShoppingCartController@update'
+			]); 
+		
+		Route::get('cart/removeCart/{id}',[
+			'as'=>'xoagiohang',
+			'uses'=>'ShoppingCartController@removeItem'
+			]);
 
-	/*Route::get(LaravelLocalization::transRoute('routes.product_category'), 'PageController@getLoaisp')->name("loaisanpham");*/
+		//shiporder -- form khoapham phải login mới dc lưu hàng
+		Route::get('ship-order',[
+			'as'=>'ship-order',
+			'uses'=>'ShoppingCartController@ShipOrder'
+			]);
+		Route::post('ship-order',[
+			'as'=>'ship-order',
+			'uses'=>'ShoppingCartController@postShipOrder'
+			]);
+			
+		//checkout-->dùng stepbar(t.hop ko dki tai khoang, dang nhap)
+		Route::get(LaravelLocalization::transRoute('routes.checkout'), 'ShoppingCartController@ChecKout')->name("checkout");
+		Route::get('checkout',[
+			'as'=>'checkout',
+			'uses'=>'ShoppingCartController@ChecKout'
+			]);
+		Route::post('checkout',[
+			'as'=>'checkout',
+			'uses'=>'ShoppingCartController@postChecKout'
+			]);
+	
+	//trang chu đã đặt transroute ở đâu đó rồi! chắc do dấu /
+	Route::get('/', 'PageController@getIndex')->name("frontend.page.trangchu");
+
+	Route::get(LaravelLocalization::transRoute('routes.about_us'), 'PageController@About_us')->name("about_us");
 
 	Route::get('loai-san-pham/{type}',[
 		'as'=>'loaisanpham',
@@ -53,46 +80,31 @@ function(){
 		'as'=>'chitiet_sanpham',
 		'uses'=>'PageController@getChiTiet'
 		]);
-	Route::get('cart',[
-		'as'=>'giohang',
-		'uses'=>'ShoppingCartController@viewCart'
-		]);
-	Route::get('cart/addCart/{id}',[
-		'as'=>'themgiohang',
-		'uses'=>'ShoppingCartController@addItem'
-		]);
-	
-	//cap nhat theo id vs so luong 
-	Route::get('cap-nhat-gio/{id}',[
-		'as'=>'capnhatgio',
-		'uses'=>'ShoppingCartController@update'
-		]); 
-	
-	Route::get('cart/removeCart/{id}',[
-		'as'=>'xoagiohang',
-		'uses'=>'ShoppingCartController@removeItem'
-		]);
 
-	//shiporder 
-	Route::get('ship-order',[
-		'as'=>'ship-order',
-		'uses'=>'ShoppingCartController@ShipOrder'
-		]);
-		
-	//Route::resource('/cart', 'CartController');
-	Route::get('checkout',[
-		'as'=>'checkout',
-		'uses'=>'ShoppingCartController@ChecKout'
-		]);
-	Route::post('checkout',[
-		'as'=>'checkout',
-		'uses'=>'ShoppingCartController@postChecKout'
-		]);
+
 
 
 
 
 	Route::get('/home', 'HomeController@index')->name('home');
+
+	//custom ten route: trong helper, dung class @show
+	/*Route::get('lien-he',[
+				'as'=>'lienhe',
+				'uses'=>'PageController@getLienHe'
+				]);
+			Route::get('gioi-thieu',[
+				'as'=>'gioithieu',
+				'uses'=>'PageController@getGioiThieu'
+				]);*/
+			
+	Route::get('{slug}', 'PageController@getIndex')->name('frontend.page.index');
+
+	Route::get('cart',[
+			'as'=>'giohang',
+			'uses'=>'ShoppingCartController@viewCart'
+			]);
+
 });
 
 

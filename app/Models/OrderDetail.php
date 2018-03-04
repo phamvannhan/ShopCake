@@ -8,6 +8,8 @@ class OrderDetail extends Model
 {
     protected $table = "order_detail";
 
+    public $timestamps = false;
+
      public function products_type()
     {
     	return $this->belongsTo(ProductType::class);

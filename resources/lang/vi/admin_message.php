@@ -8,4 +8,5 @@ return [
     "no_data" => "Không tìm thấy dữ liệu",
     'modal_delete' => 'XÁC NHẬN XÓA',
     'modal_save' => 'XÁC NHẬN LƯU',
+    'created_error' => 'Lỗi :attr vui lòng  kiểm tra lại !'
 ];

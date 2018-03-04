@@ -52,7 +52,7 @@ class PageController extends Controller
     	return view('frontend.page.loai_sanpham',compact('sp_theoloai','sp_khac','loaisp','loaisp_ten'));
     }
 
-   /* public function category($slug)
+    public function category($slug)
     {
         Banner::getBanner('products');
 
@@ -79,7 +79,7 @@ class PageController extends Controller
             );
         }
         abort(404);
-    }*/
+    }
 
 
      public function getChiTiet($id)
@@ -106,5 +106,9 @@ class PageController extends Controller
         return view('frontend.page.timkiem',compact('product'));
     }
     
+    public function About_us()
+    {
+        echo 've chung toi';
+    }
     
 }

@@ -7,42 +7,52 @@
 @section('content')
 <div class="container">
 		<div id="content">
-			
-			<form action="" method="post" class="beta-form-checkout">
+			@if(session('success'))
+            <div class="alert alert-success">
+                {{session('success')}}
+            </div>
+            @endif
+              @if(session('error'))
+            <div class="alert alert-danger">
+                {{session('error')}}
+            </div>
+            @endif
+			<form action="{{route('checkout')}}" method="post" class="beta-form-checkout"  novalidate>
 			<input type="hidden" name="_token" value="{{csrf_token()}}">
 				<div class="row">
 					<div class="col-sm-6">
-						<h4>Đặt hàng</h4>
+						<h4>Đặt Hàng</h4>
+						<p><i>(Trường hợp khách hàng ko đăng kí tài khoản)</i></p>
 						<div class="space20">&nbsp;</div>
 					
-						<div class="form-block">
+						<div class="form-block ">
 							<label for="name">Họ tên*</label>
 							<input type="text" id="name" name="name" class="form-control" placeholder="Họ tên" required>
 						</div>
-						<div class="form-block">
+						<div class="form-block ">
 							<label>Giới tính </label>
 							<input id="gender" type="radio" class="input-radio" name="gender" value="nam" checked="checked" style="width: 10%"><span style="margin-right: 10%">Nam</span>
 							<input id="gender" type="radio" class="input-radio" name="gender" value="nữ" style="width: 10%"><span>Nữ</span>
 										
 						</div>
 
-						<div class="form-block">
+						<div class="form-block ">
 							<label for="email">Email*</label>
 							<input type="email" id="email" name="email" required placeholder="expample@gmail.com" class="form-control">
 						</div>
 
-						<div class="form-block">
+						<div class="form-block ">
 							<label for="password">Password*</label>
 							<input type="password" id="password" name="password" required placeholder="***********" class="form-control">
 						</div>
 
-						<div class="form-block">
-							<label for="date">Password*</label>
+						<div class="form-block ">
+							<label for="date">Ngày Sinh*</label>
 							<input type="text" class="form-control datepicker" id="start_date" name="date_of_birth" data-date-format="{!! JS_DATE !!}" placeholder="dd-mm-yyyy">
 						</div>
 
 						<div class="form-block">
-							<label for="address">Địa chỉ*</label>
+							<label for="address">Địa Chỉ Giao Hàng*</label>
 							<input name="address" type="text" id="address" placeholder="Street Address" class="form-control" required >
 						</div>
 						
