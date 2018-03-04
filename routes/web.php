@@ -83,17 +83,10 @@ function(){
 	//Route::get(LaravelLocalization::transRoute('routes.product_category'), 'PageController@getLoaisp')->name("loaisanpham");
 	Route::get('/home', 'HomeController@index')->name('home');
 
-	//custom ten route: trong helper, dung class @show
-	Route::get('lien-he',[
-				'as'=>'lienhe',
-				'uses'=>'PageController@getLienHe'
-				]);
-			Route::get('gioi-thieu',[
-				'as'=>'gioithieu',
-				'uses'=>'PageController@getGioiThieu'
-				]);
-			
 	Route::get('{slug}', 'PageController@getIndex')->name('frontend.page.index');
+
+	//custom route gioi thieu, lien lac: trong helper, dung class @show
+	//frontend.page.index =>header
 
 	Route::get('cart',[
 			'as'=>'giohang',

@@ -113,8 +113,6 @@
 							@endforeach
 							</ul>
 						</li>
-						<li><a href="{!! route('about_us', trans('routes.about_us')) !!}" class="hidden">{!! __("f_menu.about_us") !!}</a></li>
-
 						<li>
 							<a href="{!! route('frontend.page.index', trans('routes.about_us')) !!}" class="{{ currentPageMenu(['en/about-us', 'gioi-thieu']) }}" title="{!! __('f_menu.about_us') !!}"><span class="icon_menu_about hidden-sm hidden-md hidden-lg"></span> {!! __('f_menu.about_us') !!}</a>
 						</li>
