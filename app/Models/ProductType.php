@@ -17,6 +17,9 @@ class ProductType extends Model implements Transformable
     protected $table = 'type_products';
 
     protected $fillable = [
+        'name',
+        'description',
+        'image',
         'parent_id',
         'icon',
         'level',

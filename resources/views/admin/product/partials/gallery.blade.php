@@ -1,12 +1,3 @@
-<div>
-    <div class="pull-right">
-        <button type="button" class="btn btn-primary waves-effect m-r-20 btn_show_medias" data-name="medias_galleries[]" data-append="#sortable-galleries">
-            <i class="material-icons" style="width: 20px;">photo library</i> {{ trans('admin_product.select_media') }}
-        </button>
-    </div>
-</div>
-<div class="clearfix"></div>
-
 <ul id="sortable-galleries" class="list-photos">
     @if(!empty($product))
         @foreach($product->_galleries as $rs)
@@ -17,7 +8,7 @@
                             class="btn_delete_this"
                             data-parent ="li"
                             data-multi="1"
-                            data-name="delete_medias[]"
+                            data-name="delete_galleries[]"
                             data-value="{{ $rs->id }}">
                         <i class="glyphicon glyphicon-remove"></i>
                     </button>

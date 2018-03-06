@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Products;
+use App\Models\ProductsTranslation;
 use App\Models\ProductType;
 use App\Traits\UploadPhotoTrait;
 use App\Validators\ProductValidator;
@@ -23,6 +24,12 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
      *
      * @return string
      */
+
+    protected $supportedLocales = [];
+    protected $defaultLocale = 'vi';
+
+
+
     public function model()
     {
         return Products::class;
@@ -74,31 +81,16 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
     public function store(array $input)
     {
 
-        /*$a = Products::translatedIn('vi')->get();
-
-        dd($a);*/
-
-       /* $input['is_new'] = empty($input['is_new']) ? 0 : 1;
-        $input['active'] = empty($input['active']) ? 0 : 1;
-
-        //de luu en/ vi
         $locales = config('laravellocalization.supportedLocales');
 
         foreach ($locales as $key => $value) {
-            if (empty($input[$key]['name_trans'])) {
-                $input[$key]['name_trans'] = $input['name'];
+            if (empty($input[$key]['name'])) {
+                $input[$key]['name'] = $input[$key]['name'];
             }
+
         }
+
         
-        dd($input);*/
-        //$product = $this->model->create($input);
-
-        //loi khai bao phai la 1 mang
-        /*if (!empty($input['id_type'])) {
-            $product->product_type()->attach($input['id_type']);
-        }*/
-
-        //return $product;
 
     }
 
@@ -112,12 +104,24 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
         
     }
 
-   
+    private function uploadPhotos($files, $product_id, $level = 0)
+    {
+        $config = config('photos.product_photo');
 
-    /**
-     * @param array $input
-     * return 2 chars code producer + . + 4  chars code size + . + 2 chars code brand + 3 product code
-     * 03.800800.01010
-     */
+        foreach ($files as $key => $value) {
+            $info = $this->storePhoto($value, $config);
+            $arr = [
+                'product_id' => $product_id,
+                'path' => $info['path'],
+                'file_name' => $info['file_name'],
+                'level' => $level
+            ];
+
+            ProductPhoto::create($arr);
+        }
+    }
+
+
+
 
 }

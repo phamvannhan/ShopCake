@@ -19,6 +19,10 @@ class ProductsTranslation extends Model
         'slug'
     ];
 
+    public $translatedAttributes = array('name','remark','slug');
+
+
+    //public $translationModel = 'MyApp\Models\CountryAwesomeTranslation';
     /**
      * Return the sluggable configuration array for this model.
      *

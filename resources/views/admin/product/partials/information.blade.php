@@ -32,11 +32,12 @@
     </div>
 </div>
 
+
 <div class="row">
     @include("admin.translation.form", [
         "object_trans" => !empty($product) ? $product : null,
         "form_fields" => [
-            ["type" => "text", "name" => "name_trans"],
+            ["type" => "text", "name" => "name"],
             ["type" => "text", "name" => "remark"],
         ],
         "translation_file" => "admin_product"

@@ -20,6 +20,7 @@ class CreateProductPhotoTable extends Migration
             $table->string("file_name")->nullable();
             $table->string("file_type")->nullable();
             $table->smallInteger("position")->default(0);
+            $table->tinyInteger('level')->default(0)->index();
             $table->timestamps();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });

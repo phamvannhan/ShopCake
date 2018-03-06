@@ -1,5 +1,6 @@
 ShopCake:
-
+0. id_type = categories_id => tree, type_product = Product_categories model
+   - name_trans = name in category, name product translation
 1. Model:class in relationship / 
 	- not id_foreign,..=> errors user seeder
 	- $timestamps = false;
@@ -14,7 +15,9 @@ ShopCake:
    - if(!search) ko co them isempty()->chi khi su dung $this->model
 
 5. translation:
+   - mca: https://tutorials.kode-blog.com/laravel-5-localization
    - menu: 
+   - kernel.php 
    - lang:/route.php
    - trang chu: front/page/en[vi] => header
    - trans('route.'), {!! __('f_top.') !!}
@@ -26,3 +29,12 @@ ShopCake:
 
 7. ViewComposer: 
    - category
+
+8. Upload Image:
+   - install: intervention/image, photo.config
+   - views: upload_template
+   - views/layouts/partials => define (max_upload)
+   - config/ photo.php
+9. Create Products:
+   - name: config => array
+   - config: sluggable/ => trans->name ?? 

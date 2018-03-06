@@ -10,8 +10,7 @@ use Prettus\Repository\Traits\TransformableTrait;
 
 class Products extends Model implements Transformable //dung de da ngon ngu
 {	
-	//\Dimsav\Translatable\Translatable,
-    use  TransformableTrait, MetadataTrait, ModelEventTrait;
+	use \Dimsav\Translatable\Translatable, TransformableTrait, MetadataTrait, ModelEventTrait;
 
     protected $table = "products";
 
@@ -20,16 +19,22 @@ class Products extends Model implements Transformable //dung de da ngon ngu
     ];
 
     protected $fillable = [
-        "name",
+        "name_old",
         "id_type",
         "description",
         "unit_price",
         "promotion_price",
         "image",
         "unit",
-        "new"
+        "new",
+        "is_new",
+        "color_id",
+        "size_id",
+        "setting_id",
+        "temperature"
     ];
 
+    //translate
     public $translatedAttributes = [
         "slug",
         "name",
@@ -47,6 +52,27 @@ class Products extends Model implements Transformable //dung de da ngon ngu
     //phien ban moi
     public function categories()
     {
-        return $this->belongsToMany(ProductCategory::class, "product_category", "product_id", "category_id");
+        return $this->belongsToMany(ProductType::class,'id_type','id');
+    }
+   
+    public function photo()
+    {
+        return $this->hasOne(ProductPhoto::class, "product_id")
+            ->orderBy("level", "asc")
+            ->orderBy("position", "asc");
+    }
+
+    public function photos()
+    {
+        return $this->hasMany(ProductPhoto::class, "product_id")
+            ->orderBy("level", "asc")
+            ->orderBy("position", "asc");
+    }
+
+    public function _photos()
+    {
+        return $this->hasMany(ProductPhoto::class, "product_id")->where(function ($q) {
+            return $q->where('level', 0);
+        })->orderBy("position", "asc");
     }
 }

@@ -18,7 +18,6 @@ Route::group(
                     return view("admin.layouts.master");
                 })->name("admin.index");
 
-
                 resourceAdmin('users', 'UserController', 'user');
 
                 resourceAdmin('roles', 'RoleController', 'role');

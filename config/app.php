@@ -163,7 +163,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-
+        Intervention\Image\ImageServiceProvider::class,
        
         Ultraware\Roles\RolesServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
@@ -243,6 +243,7 @@ return [
         'TranslateUrl' => App\Helper\TranslateUrl::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

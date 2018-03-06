@@ -1,14 +1,16 @@
 @extends("admin.layouts.master")
 
-<!--thieu media-->
 @section("meta")
-    
+    <!--for branch tab-->
+
     <link rel="stylesheet" href="/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.min.css"/>
 @endsection
 
 @section("style")
     <!--select 2 plugin-->
     <link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css"/>
+    <!--for branch tab-->
+    <link rel="stylesheet" href="/assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css"/>
 @endsection
 
 
@@ -50,10 +52,6 @@
                                 @include("admin.product.partials.gallery")
                             </div>
 
-                            <div role="tabpanel" class="tab-pane fade" id="branch">
-                                
-                            </div>
-
                             <div role="tabpanel" class="tab-pane fade" id="seo">
                                 @include("admin.metadata.form")
                             </div>
@@ -72,10 +70,7 @@
 @endsection
 
 @section("script")
-    
-
     @include("admin.layouts.partials.upload_template")
-    @include('admin.product.partials.modal_list_media')
 
     <!--select 2 plugin-->
     <script src="/assets/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
@@ -85,12 +80,6 @@
     <!-- Jquery Validation Plugin Css -->
     <script src="/assets/plugins/jquery-validation/jquery.validate.js"></script>
 
-    <!--dataTables plugin-->
-    <script src="/assets/plugins/jquery-datatable/jquery.dataTables.js" type="text/javascript"></script>
-    <script src="/assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js" type="text/javascript"></script>
-
-    <script type="text/javascript" src="/assets/admin/js/pages/product.create.js?v=1.0"></script>
-
-    <script type="text/javascript" src="/assets/admin/js/pages/media.modal.js"></script>
+    <script type="text/javascript" src="/assets/admin/js/pages/product.create.js?v=1.2"></script>
 
 @endsection

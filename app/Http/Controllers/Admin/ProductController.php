@@ -8,7 +8,7 @@ use Yajra\Datatables\Facades\Datatables;
 use App\Repositories\ProductRepository;
 use App\Repositories\ProductCategoryRepository;
 use App\Helper\Breadcrumb;
-
+use App\Models\Products;
 
 class ProductController extends Controller
 {
@@ -45,7 +45,7 @@ class ProductController extends Controller
 
         $out_put_categories = $this->category->outTreeCategoryRadioCheckbox($tree, $type = 'checkbox', $list_id = [], $disable_id = [], $root = false);
 
-        return view('admin.product.create_edit', compact('out_put_categories'));
+        return view('admin.product.create_edit', compact('out_put_categories','categories'));
     }
 
     public function datatable()
@@ -75,17 +75,18 @@ class ProductController extends Controller
 
         $input = $request->all();
 
+        /*$m = new Products(); 
+        $m->id_type = $request->id_type;
+        $m->is_new = $request->is_new ? 0: 1;
+        $m->name_old = $request->name_old;
+
+        $m->save(); */
+        
         $this->product->store($input);
-
-        /*session()->flash('success', trans('admin_message.created_successful', ['attr' => trans('admin_product.product')]));
-
-        return redirect()->route('admin.product.index');*/
-
-        /*$this->product->store($input);
 
         session()->flash('success', trans('admin_message.created_successful', ['attr' => trans('admin_product.product')]));
 
-        return redirect()->route('admin.product.index');*/
+        return redirect()->route('admin.product.index');
     }
 
     
