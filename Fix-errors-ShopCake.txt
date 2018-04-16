@@ -38,3 +38,5 @@ ShopCake:
 9. Create Products:
    - name: config => array
    - config: sluggable/ => trans->name ?? 
+10. tawk.to
+   email: nhanitk14dev@gmail.com  pass: 140896nhanitk14

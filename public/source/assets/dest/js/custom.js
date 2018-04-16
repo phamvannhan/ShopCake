@@ -1,3 +1,12 @@
+$('#autoplay').slick({
+    dots: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 500
+  });
+
+
     $('.l-inline ov li.dropdown').hover(function() {
       $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
     }, function() {

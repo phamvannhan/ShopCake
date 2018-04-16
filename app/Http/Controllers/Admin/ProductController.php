@@ -50,7 +50,6 @@ class ProductController extends Controller
 
     public function datatable()
     {
-       // $input = $request->all(); de tim kiem
 
         $data = $this->product->datatable();
 
@@ -74,13 +73,6 @@ class ProductController extends Controller
     {
 
         $input = $request->all();
-
-        /*$m = new Products(); 
-        $m->id_type = $request->id_type;
-        $m->is_new = $request->is_new ? 0: 1;
-        $m->name_old = $request->name_old;
-
-        $m->save(); */
         
         $this->product->store($input);
 

@@ -64,16 +64,10 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
 
     public function datatable()
     {
-        //$model = $this->model->all();
         $model = $this->model->select('*');//->with(['product_type']);
         return $model;
-         
-        /*if (!empty($input['code'])) {
-            $code = trim($input['code']);
-            $model->where('product.code', 'LIKE', '%' . $code . '%');
-        }
 
-        return $model->with(['categories' => function ($q) {
+       /* return $model->with(['categories' => function ($q) {
             $q->orderBy('product_categories.level', 'asc');
         }])->withTranslation();*/
     }
@@ -89,8 +83,6 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
             }
 
         }
-
-        
 
     }
 
