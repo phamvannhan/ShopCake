@@ -6,8 +6,7 @@
 					<ul class="top-menu menu-beta l-inline">
 						<li><a href=""><i class="fa fa-home"></i> {!! __('f_top.address_shop') !!}</a></li>
 						<li><a href=""><i class="fa fa-phone"></i> 0163 296 7751</a></li>
-						 <li><a href="{{URL::asset('')}}language/vi">{!! __('f_top.lang_vi') !!}</a></li>
-                        <li><a href="{{URL::asset('')}}language/en">{!! __('f_top.lang_en') !!}</a></li>
+						 @include('frontend.layouts.partials.route_translation')
 					</ul>
 				</div>
 				<div class="pull-right auto-width-right">

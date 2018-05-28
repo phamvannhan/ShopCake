@@ -67,7 +67,7 @@ function(){
 			]);
 	
 	//trang chu đã đặt transroute ở đâu đó rồi! chắc do dấu /
-	Route::get('/', 'PageController@getIndex')->name("frontend.page.trangchu");
+	Route::get('/', 'PageController@getIndex')->name("trangchu");
 
 	Route::get(LaravelLocalization::transRoute('routes.about_us'), 'PageController@About_us')->name("about_us");
 

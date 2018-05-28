@@ -30,7 +30,7 @@
 <body class="login-page">
 <div class="login-box">
     <div class="logo">
-        <a href="javascript:void(0);">Admin <b>ShopCake</b></a>
+        <a href="javascript:void(0);">Admin <b>PRIME</b></a>
     </div>
     <div class="card">
         <div class="body">

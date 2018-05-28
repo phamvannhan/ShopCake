@@ -13,7 +13,7 @@ interface ProductCategoryRepository extends RepositoryInterface
 {
     public function getModel();
 
-    public function getCategories($parent_id, $children = false, $is_display = -1);
+    public function getCategories($parent_id, $children = false);
 
     public function arrTreeCategories($parent_id);
 

@@ -3,7 +3,7 @@
     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
         <li class="top__item lang">
             <a title="{{ trans("f_layout.{$localeCode}") }}" rel="alternate" hreflang="{{ $localeCode }}" class="{!! \App::getLocale() == $localeCode ? "active" : null !!}" href="{!! $route_translation[$localeCode] !!}">
-                <img src="/assets/frontend/images/icon--lang-{{ $localeCode }}.png" alt="{{ $properties['native'] }}" />
+                <img src="/assets/images/icon/icon--lang-{{ $localeCode }}.png" alt="{{ $properties['native'] }}" />
             </a>
         </li>
     @endforeach
@@ -11,7 +11,7 @@
     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
         <li class="top__item lang">
             <a title="{{ trans("f_layout.{$localeCode}") }}" rel="alternate" hreflang="{{ $localeCode }}" class="{!! \App::getLocale() == $localeCode ? "active" : null !!}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                <img src="/assets/frontend/images/icon--lang-{{ $localeCode }}.png" alt="{{ $properties['native'] }}" />
+                <img src="/assets/images/icon/icon--lang-{{ $localeCode }}.png" alt="{{ $properties['native'] }}" />
             </a>
         </li>
     @endforeach

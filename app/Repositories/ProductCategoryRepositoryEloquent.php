@@ -56,22 +56,22 @@ class ProductCategoryRepositoryEloquent extends BaseRepository implements Produc
     }
 
     //3 cai nay can phai co de lay parent_id
-    public function getCategories($parent_id, $children = false, $is_display = -1)
+    public function getCategories($parent_id, $children = false)
     {
         $model = $this->model->select("*")
             ->where('parent_id', $parent_id);
-        if ($children) {
+        /*if ($children) {
             if ($is_display !== -1) {
                 $model->with(["children" => function ($q) use ($is_display) {
-                    $q->where('is_display', $is_display);
+                    //$q->where('is_display', $is_display);
                 }]);
             } else {
                 $model->with(["children"]);
             }
-        }
-        if ($is_display !== -1) {
+        }*/
+        /*if ($is_display !== -1) {
             $model->where('is_display', $is_display);
-        }
+        }*/
         $model->withTranslation();
 
         return $model->orderBy('level', 'asc')
